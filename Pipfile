@@ -5,6 +5,13 @@ name = "pypi"
 
 [packages]
 django = "*"
+djangorestframework = "*"
+pillow = "*"
+psycopg2 = "*"
+python-decouple = "*"
+djangorestframework-simplejwt = "*"
+drf-yasg = "*"
+setuptools = "*"
 
 [dev-packages]
 
