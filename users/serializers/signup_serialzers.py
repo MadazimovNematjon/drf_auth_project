@@ -24,11 +24,10 @@ class SignUpSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         user = super(SignUpSerializer, self).create(validated_data)
-        print("created user {}".format(user))
         #   email send code
         code = user.create_verify_code()
         print("created code {}".format(code))
-        send_email(receiver_mail=user.email,code=code)
+        # send_email(receiver_mail=user.email,code=code)
 
         user.save()
         return user
@@ -66,7 +65,7 @@ class SignUpSerializer(serializers.ModelSerializer):
             raise ValidationError(data)
         return value
 
-    # def to_representation(self, instance):
-    #     data = super(SignUpSerializer, self).to_representation(instance)
-    #     data.update(instance.tokens())
-    #     return data
+    def to_representation(self, instance):
+        data = super(SignUpSerializer, self).to_representation(instance)
+        data.update(instance.tokens())
+        return data

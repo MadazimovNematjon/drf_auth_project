@@ -73,7 +73,7 @@ class User(AbstractUser, BaseModel):
         if not self.password.startswith('pbkdf2_sha256'):
             self.set_password(self.password)
 
-    def token(self):
+    def tokens(self):
         refresh = RefreshToken.for_user(self)
         return {
             'access_token': str(refresh.access_token),
